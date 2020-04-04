@@ -25,7 +25,16 @@ except ImportError:
 import logging
 import os
 import sys
-import urllib
+try:
+    # Assume Python 3.x
+    from urllib.error import URLError, HTTPError
+    from urllib.parse import urlencode
+    from urllib.request import Request, urlopen
+except ImportError:
+    # Probably Python2
+    from urllib import urlencode
+    from urllib2 import Request, urlopen
+    from urllib2 import URLError, HTTPError
 import warnings
 
 
@@ -75,7 +84,7 @@ def get_any_url(url, filename=None, force=False):
     ## cache it
     if force or not os.path.exists(filename):
         log.debug('getting web page %r', url)
-        page_filehandle = urllib.urlopen(url)
+        page_filehandle = urlopen(url)
         page = page_filehandle.read()
         page_filehandle.close()
         f = open(filename, 'wb')
