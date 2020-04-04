@@ -1,6 +1,8 @@
 # tts_save
 
-Table Top Simulator assest download/extractor
+Table Top Simulator assest download/extractor.
+
+Works with Python 3 or Python 2.
 
 NOTE this is untested, consider:
 
