@@ -85,6 +85,7 @@ def get_any_url(url, filename=None, force=False):
     if force or not os.path.exists(filename):
         log.debug('getting web page %r', url)
         page_filehandle = urlopen(url)
+        # TODO use mime type to determine file extension; page_filehandle.getheader('Content-Type')
         page = page_filehandle.read()
         page_filehandle.close()
         f = open(filename, 'wb')
