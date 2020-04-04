@@ -29,6 +29,10 @@ import urllib
 import warnings
 
 
+try:
+    basestring
+except NameError:
+    basestring = str
 
 logging.basicConfig() ## NO debug, no info. But logs warnings
 log = logging.getLogger("mylogger")
