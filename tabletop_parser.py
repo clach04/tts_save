@@ -143,6 +143,7 @@ def main(argv=None):
     """Load json and then look for any value that starts with 'http' (so no ftp support).
     Then dump to disk, based on the key (path) name.
 
+    TODO Consider using jsonpath, looks like $..FaceURL and $..BackURL would be needed as minimum
     TODO Consider re-writting json to access downloaded file(s).
     TODO Consider re-writting json with embedded base64 encoded values.
     """
