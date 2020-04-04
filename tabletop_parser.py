@@ -140,6 +140,13 @@ def main(argv=None):
     log.info('read complete, len %r', len(data))
     f.close()
 
+    """Load json and then look for any value that starts with 'http' (so no ftp support).
+    Then dump to disk, based on the key (path) name.
+
+    TODO Consider re-writting json to access downloaded file(s).
+    TODO Consider re-writting json with embedded base64 encoded values.
+    """
+
     #data data de-encoding..... from UTF8
     tmp_data = load_json(data)
     log.debug('load complete')
