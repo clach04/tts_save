@@ -37,11 +37,14 @@ except ImportError:
     from urllib2 import URLError, HTTPError
 import warnings
 
+import jsonpath_ng  # https://github.com/h2non/jsonpath-ng/
+
 
 try:
     basestring
 except NameError:
     basestring = str
+
 
 logging.basicConfig() ## NO debug, no info. But logs warnings
 log = logging.getLogger("mylogger")
@@ -199,6 +202,59 @@ def main(argv=None):
     38  # uniq urls
     73
     """
+
+    print('-' * 65)
+    counter = 0
+    for item in find_in_obj(tmp_data, check_value_is_url):
+        counter = counter + 1  # fixme should have used enumerate
+        print(item)
+    print(counter)
+
+    print('-' * 65)
+    jsonpath_expr = jsonpath_ng.parse('$..FaceURL')
+    jsonpath_expr = jsonpath_ng.parse('$..BackURL')
+    counter = 0
+    #import pdb ; pdb.set_trace()
+    for match in jsonpath_expr.find(tmp_data):
+        counter = counter + 1  # fixme should have used enumerate
+        #print(match)
+        print('%s %s %s'% (match.full_path, match.path, match.value)) # match.value
+        match.value = 'jpeg_goes_here'
+    print(counter)
+    #import pdb ; pdb.set_trace()
+    print('-' * 65)
+    #print(dump_json(tmp_data, indent=4))
+    single_node_item = str(match.full_path)
+    single_node_item = match.full_path
+    print(single_node_item)
+    new_value = 'DEBUG_VALUE'
+    #jsonpath_expr = jsonpath_ng.parse(single_node_item)  # jsonpath_ng errors on numeric keyvalues that are strings - https://github.com/h2non/jsonpath-ng/issues/38
+    # TODO use old/modified https://github.com/perfecto25/dictor/blob/master/dictor/__init__.py or https://github.com/akesterson/dpath-python
+    #tmp_dict = jsonpath_expr.update(tmp_data, new_value)
+    def get_path(match):
+        '''return an iterator based upon MATCH.PATH. Each item is a path component,
+    start from outer most item.'''
+        if match.context is not None:
+            for path_element in get_path(match.context):
+                yield path_element
+            yield str(match.path)
+    def update_json(json, path, value):
+        '''Update JSON dictionnary PATH with VALUE. Return updated JSON'''
+        try:
+            first = next(path)
+            # check if item is an array
+            if first.startswith('[') and first.endswith(']'):
+                try:
+                    first = int(first[1:-1])
+                except ValueError:
+                    pass
+            json[first] = update_json(json[first], path, value)
+            return json
+        except StopIteration:
+            return value
+    tmp_dict = tmp_data
+    update_json(tmp_dict, get_path(single_node_item), new_value)
+    print(dump_json(tmp_dict, indent=4))
 
     return 0
 
