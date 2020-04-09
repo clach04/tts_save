@@ -189,7 +189,7 @@ def main(argv=None):
         get_any_url(tmp_x, filename=temp_filename)
         #url_dict[temp_filename] = tmp_x
         url_dict[tmp_x] = temp_filename
-    print(tmp_data['ObjectStates'][4]['CustomDeck']['1']['FaceURL'])
+    #print(tmp_data['ObjectStates'][4]['CustomDeck']['1']['FaceURL'])
     print(len(url_dict))
     print(counter)
     """
