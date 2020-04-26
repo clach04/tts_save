@@ -11,3 +11,5 @@ NOTE this is untested, consider:
   * https://github.com/cwoac/TTS-Manager
       * https://github.com/sytone/TTS-Manager
           * https://github.com/ivanpmartell/TTS-Manager
+
+Consider **not** using TTS Mod BackUp based on https://www.reddit.com/r/tabletopsimulator/comments/bbq6kp/unable_to_download_tts_mod_backup/
