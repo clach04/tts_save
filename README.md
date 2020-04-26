@@ -9,4 +9,5 @@ NOTE this is untested, consider:
   * https://github.com/eigengrau/tts-backup
       * https://github.com/olivierlemoal/tts-backup
   * https://github.com/cwoac/TTS-Manager
-      * https://github.com/ivanpmartell/TTS-Manager
+      * https://github.com/sytone/TTS-Manager
+          * https://github.com/ivanpmartell/TTS-Manager
