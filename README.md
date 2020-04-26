@@ -4,6 +4,8 @@ Table Top Simulator assest download/extractor.
 
 Works with Python 3 or Python 2.
 
+Pulls down anything that looks like a http URL to local filesystem as well as extracting base64 strings into local files.
+
 NOTE this is untested, consider:
 
   * https://github.com/eigengrau/tts-backup
