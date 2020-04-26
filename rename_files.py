@@ -39,7 +39,7 @@ except ImportError:
     from urllib2 import URLError, HTTPError
 import warnings
 
-import magic
+import magic  # TODO consider using https://github.com/clach04/magic-fork
 
 
 try:
