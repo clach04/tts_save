@@ -79,6 +79,32 @@ else:
 
 log.info('Python %s on %s', sys.version, sys.platform)  # TODO make this info?
 
+
+"""TODO handle pages that expect browser user-agent
+
+from urllib.request import urlopen
+import urllib.error
+
+url = 'https://paste.ee/r/......'
+print(url)
+req = urllib.request.Request(
+    url,
+    data=None,
+    headers={
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+    }
+)
+try:
+    with urlopen(req) as response:
+      data = response.read()
+      print(data)
+except urllib.error.HTTPError as e:
+  print("Error opening %s (%s)" % (url,e))
+  print("%r" % (dir(e),))
+  print("%r" % (e.reason,))
+  print("%r" % (e.strerror,))
+
+"""
 def get_any_url(url, filename=None, force=False):
     filename = filename or 'tmp_file.html'
     ## cache it
